@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import comp261.assignment1.state.StateManager;
+
 /**
  * COMP261 Assignment 1
  * The Auckland Road System
@@ -29,6 +31,7 @@ public class Program extends Canvas implements Runnable {
 	public static final int HEIGHT = 720;
 	public static boolean debug = true;
 
+	private StateManager sm;
 	private BufferedImage image;
 
 	private Thread thread;
@@ -42,6 +45,7 @@ public class Program extends Canvas implements Runnable {
 	public Program() {
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
+		sm = new StateManager();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
 		JFrame frame = new JFrame("The Auckland Road System");
@@ -54,15 +58,16 @@ public class Program extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Updates the canvas for the current frame.
+	 * Updates the canvas for the current frame by updating the state manager.
 	 */
 	public void update() {
-
+		sm.update();
 	}
 
 	/**
 	 * Creates a buffer strategy with triple buffering, sets anti-aliasing on
-	 * the graphics and draws the graphics to the screen.
+	 * the graphics. Graphics are drawn to the screen through the state
+	 * manager's render method.
 	 * 
 	 * Debug information is drawn to the screen if debug mode is enabled.
 	 */
@@ -79,6 +84,8 @@ public class Program extends Canvas implements Runnable {
 
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		sm.render(g2);
 
 		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 
