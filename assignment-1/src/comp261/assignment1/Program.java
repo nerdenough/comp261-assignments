@@ -1,6 +1,10 @@
 package comp261.assignment1;
 
 import java.awt.Canvas;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  * COMP261 Assignment 1
@@ -13,6 +17,7 @@ import java.awt.Canvas;
  * @author Brendan Goodenough
  */
 
+@SuppressWarnings("serial")
 public class Program extends Canvas implements Runnable {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
@@ -20,6 +25,22 @@ public class Program extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running;
 	private int fps;
+
+	/**
+	 * Constructs a new Program object by setting the canvas dimensions and
+	 * building the GUI.
+	 */
+	public Program() {
+		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		
+		JFrame frame = new JFrame("The Auckland Road System");
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.add(this);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Updates the canvas for the current frame.
