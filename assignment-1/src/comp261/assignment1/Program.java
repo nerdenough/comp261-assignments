@@ -1,7 +1,13 @@
 package comp261.assignment1;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -21,10 +27,13 @@ import javax.swing.WindowConstants;
 public class Program extends Canvas implements Runnable {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
+	public static boolean debug = true;
+
+	private BufferedImage image;
 
 	private Thread thread;
 	private boolean running;
-	private int fps;
+	private int fps = 60;
 
 	/**
 	 * Constructs a new Program object by setting the canvas dimensions and
@@ -32,7 +41,9 @@ public class Program extends Canvas implements Runnable {
 	 */
 	public Program() {
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
+
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
 		JFrame frame = new JFrame("The Auckland Road System");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -50,10 +61,35 @@ public class Program extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Renders the current frame of the canvas to the screen.
+	 * Creates a buffer strategy with triple buffering, sets anti-aliasing on
+	 * the graphics and draws the graphics to the screen.
+	 * 
+	 * Debug information is drawn to the screen if debug mode is enabled.
 	 */
 	public void render() {
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
 
+		Graphics g = bs.getDrawGraphics();
+		Graphics2D g2 = (Graphics2D) image.getGraphics();
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, WIDTH, HEIGHT);
+
+		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
+
+		if (debug) {
+			// DEBUG: Show FPS Counter
+			g.setColor(Color.BLACK);
+			g.drawString(String.format("FPS: %S", fps), 10, 20);
+		}
+
+		g.dispose();
+		bs.show();
 	}
 
 	/**
@@ -76,7 +112,6 @@ public class Program extends Canvas implements Runnable {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 
-			// Update and render the current frame
 			if (delta >= 1) {
 				update();
 				render();
