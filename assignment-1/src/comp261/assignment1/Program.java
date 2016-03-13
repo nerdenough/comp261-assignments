@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import comp261.assignment1.handler.KeyHandler;
 import comp261.assignment1.state.StateManager;
 
 /**
@@ -43,7 +44,7 @@ public class Program extends Canvas implements Runnable {
 	 * building the GUI.
 	 */
 	public Program() {
-		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		sm = new StateManager();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
@@ -55,6 +56,10 @@ public class Program extends Canvas implements Runnable {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
+		addKeyListener(new KeyHandler(sm));
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**

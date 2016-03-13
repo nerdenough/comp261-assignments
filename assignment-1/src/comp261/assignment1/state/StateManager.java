@@ -38,4 +38,12 @@ public class StateManager {
 	public void render(Graphics2D g2) {
 		states.get(state).render(g2);
 	}
+	
+	public void keyPressed(int key) {
+		states.get(state).keyPressed(key);
+	}
+	
+	public void keyReleased(int key) {
+		states.get(state).keyReleased(key);
+	}
 }
