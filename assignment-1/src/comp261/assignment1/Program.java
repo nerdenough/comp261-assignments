@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import comp261.assignment1.graph.Graph;
 import comp261.assignment1.handler.KeyHandler;
 import comp261.assignment1.state.StateManager;
 
@@ -98,6 +99,7 @@ public class Program extends Canvas implements Runnable {
 			// DEBUG: Show FPS Counter
 			g.setColor(Color.BLACK);
 			g.drawString(String.format("FPS: %S", fps), 10, 20);
+			g.drawString(String.format("Zoom: %1$,.1f", Graph.zoom / 100), 10, 40);
 		}
 
 		g.dispose();

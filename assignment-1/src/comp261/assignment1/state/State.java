@@ -42,6 +42,8 @@ public abstract class State {
 		if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) keys[1] = true;
 		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) keys[2] = true;
 		if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) keys[3] = true;
+		if (key == KeyEvent.VK_E) keys[4] = true;
+		if (key == KeyEvent.VK_Q) keys[5] = true;
 	}
 	
 	/**
@@ -53,5 +55,7 @@ public abstract class State {
 		if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) keys[1] = false;
 		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) keys[2] = false;
 		if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) keys[3] = false;
+		if (key == KeyEvent.VK_E) keys[4] = false;
+		if (key == KeyEvent.VK_Q) keys[5] = false;
 	}
 }
