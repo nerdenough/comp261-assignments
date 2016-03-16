@@ -2,13 +2,16 @@ package comp261.assignment1.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.HashMap;import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import comp261.assignment1.Program;
 import comp261.assignment1.helper.FileHelper;
 
 public class Graph {
 	private HashMap<Integer, Node> nodes;
+	private Set<Segment> segments;
 	
 	public static final double CENTRE_LAT = -36.868816;
 	public static final double CENTRE_LON = 174.744800;
@@ -25,6 +28,7 @@ public class Graph {
 	
 	public Graph(GraphType type) {
 		nodes = FileHelper.getNodes(type);
+		segments = FileHelper.getSegments(type, nodes);
 	}
 	
 	public void update() {
@@ -40,6 +44,10 @@ public class Graph {
 		for (Map.Entry<Integer, Node> entry : nodes.entrySet()) {
 			Node node = entry.getValue();
 			node.render(g2);
+		}
+		
+		for (Segment segment : segments) {
+			segment.render(g2);
 		}
 	}
 	

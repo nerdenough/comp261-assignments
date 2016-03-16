@@ -21,6 +21,18 @@ public class Node {
 		g2.drawRect((int) (x + offsetX - 1), (int) (y + offsetY - 1), 3, 3);
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	public double getLocX() {
+		return x + offsetX;
+	}
+	
+	public double getLocY() {
+		return y + offsetY;
+	}
+	
 	public void setOffsetX(double offsetX) {
 		this.offsetX = offsetX;
 	}
