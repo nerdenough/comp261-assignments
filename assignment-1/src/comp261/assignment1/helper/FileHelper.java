@@ -10,6 +10,7 @@ import java.util.Set;
 import comp261.assignment1.Program;
 import comp261.assignment1.graph.Graph.GraphType;
 import comp261.assignment1.graph.Node;
+import comp261.assignment1.graph.Road;
 import comp261.assignment1.graph.Segment;
 
 /**
@@ -90,5 +91,44 @@ public class FileHelper {
 		}
 
 		return segments;
+	}
+
+	/**
+	 * Returns a HashMap of roads using data from the roads resource file, using
+	 * the road ID as the key and the road object as the value.
+	 * 
+	 * @return roads
+	 */
+	public static HashMap<Integer, Road> getRoads(GraphType type) {
+		HashMap<Integer, Road> roads = new HashMap<>();
+
+		try {
+			String line;
+			String folder = type == GraphType.SMALL ? "small" : "large";
+			String filepath = String.format("/data/%s/roads.tab", folder);
+
+			InputStream is = Program.class.getResourceAsStream(filepath);
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+
+			// Skip top line
+			br.readLine();
+
+			while ((line = br.readLine()) != null) {
+				String[] fields = line.split("\t");
+
+				int id = Integer.parseInt(fields[0]);
+				String label = fields[2];
+				String city = fields[3];
+
+				Road road = new Road(id, label, city);
+
+				roads.put(id, road);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return roads;
 	}
 }

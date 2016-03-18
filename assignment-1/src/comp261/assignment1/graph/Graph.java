@@ -11,6 +11,7 @@ import comp261.assignment1.helper.FileHelper;
 
 public class Graph {
 	private HashMap<Integer, Node> nodes;
+	private HashMap<Integer, Road> roads;
 	private Set<Segment> segments;
 	
 	public static final double CENTRE_LAT = -36.868816;
@@ -28,6 +29,7 @@ public class Graph {
 	
 	public Graph(GraphType type) {
 		nodes = FileHelper.getNodes(type);
+		roads = FileHelper.getRoads(type);
 		segments = FileHelper.getSegments(type, nodes);
 	}
 	
