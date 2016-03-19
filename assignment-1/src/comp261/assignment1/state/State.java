@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 
 public abstract class State {
 	public boolean[] keys;
+	public int mouseX, mouseY, prevMouseX, prevMouseY;
 	
 	/**
 	 * Constructs a new State object and initialises any generic state variables
@@ -57,5 +58,15 @@ public abstract class State {
 		if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) keys[3] = false;
 		if (key == KeyEvent.VK_E) keys[4] = false;
 		if (key == KeyEvent.VK_Q) keys[5] = false;
+	}
+	
+	/**
+	 * Handles a mouse drag event
+	 * @param x - x drag coord
+	 * @param y - y drag coord
+	 */
+	public void mouseDragged(int x, int y) {
+		mouseX = x;
+		mouseY = y;
 	}
 }

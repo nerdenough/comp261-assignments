@@ -48,6 +48,6 @@ public class StateManager {
 	}
 	
 	public void mouseDragged(int x, int y) {
-		// TODO
+		states.get(state).mouseDragged(x, y);
 	}
 }
