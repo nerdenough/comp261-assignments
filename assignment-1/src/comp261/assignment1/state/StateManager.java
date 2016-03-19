@@ -46,4 +46,8 @@ public class StateManager {
 	public void keyReleased(int key) {
 		states.get(state).keyReleased(key);
 	}
+	
+	public void mouseDragged(int x, int y) {
+		// TODO
+	}
 }

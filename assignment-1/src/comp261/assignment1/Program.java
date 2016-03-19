@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 
 import comp261.assignment1.graph.Graph;
 import comp261.assignment1.handler.KeyHandler;
+import comp261.assignment1.handler.MouseMotionHandler;
 import comp261.assignment1.state.StateManager;
 
 /**
@@ -59,6 +60,7 @@ public class Program extends Canvas implements Runnable {
 		frame.setVisible(true);
 		
 		addKeyListener(new KeyHandler(sm));
+		addMouseMotionListener(new MouseMotionHandler(sm));
 		setFocusable(true);
 		requestFocus();
 	}
