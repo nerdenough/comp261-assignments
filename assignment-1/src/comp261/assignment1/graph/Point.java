@@ -1,36 +1,23 @@
 package comp261.assignment1.graph;
 
-import java.awt.Graphics2D;
-
 import comp261.assignment1.helper.LocationHelper;
 
-public class Node {
-	private int id;
+public class Point {
 	private double lat, lon, x, y, offsetX, offsetY;
 	
-	public Node(int id, double lat, double lon) {
-		this.id = id;
+	public Point(double lat, double lon) {
 		this.lat = lat;
 		this.lon = lon;
-		
 		x = LocationHelper.getLocX(lat);
 		y = LocationHelper.getLocY(lon);
 	}
 	
-	public void render(Graphics2D g2) {
-		g2.drawRect((int) (x + offsetX - 1), (int) (y + offsetY - 1), 3, 3);
+	public double getX() {
+		return x;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
-	public double getLat() {
-		return lat;
-	}
-	
-	public double getLon() {
-		return lon;
+	public double getY() {
+		return y;
 	}
 	
 	public double getLocX() {

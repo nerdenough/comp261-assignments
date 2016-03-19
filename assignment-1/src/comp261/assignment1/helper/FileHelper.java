@@ -3,13 +3,16 @@ package comp261.assignment1.helper;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import comp261.assignment1.Program;
 import comp261.assignment1.graph.Graph.GraphType;
 import comp261.assignment1.graph.Node;
+import comp261.assignment1.graph.Point;
 import comp261.assignment1.graph.Road;
 import comp261.assignment1.graph.Segment;
 
@@ -77,12 +80,24 @@ public class FileHelper {
 
 			while ((line = br.readLine()) != null) {
 				String[] fields = line.split("\t");
-
+				
+				List<Point> points = new ArrayList<>();
 				int id = Integer.parseInt(fields[0]);
 				Node n1 = nodes.get(Integer.parseInt(fields[2]));
 				Node n2 = nodes.get(Integer.parseInt(fields[3]));
 
-				Segment segment = new Segment(id, n1, n2);
+				Segment segment = new Segment(id, n1, n2, points);
+				
+				points.add(new Point(n1.getLat(), n1.getLon()));
+				
+				for (int i = 4; i < fields.length; i += 2) {
+					double x = Double.parseDouble(fields[i]);
+					double y = Double.parseDouble(fields[i+1]);
+					Point point = new Point(x, y);
+					points.add(point);
+				}
+				
+				points.add(new Point(n2.getLat(), n2.getLon()));
 
 				segments.add(segment);
 			}

@@ -39,6 +39,11 @@ public class Graph {
 			node.setOffsetX(Program.WIDTH / 2 - graphX / 2);
 			node.setOffsetY(Program.HEIGHT / 2 - graphY / 2);
 		}
+		
+		for (Segment segment : segments) {
+			segment.setOffsetX(Program.WIDTH / 2 - graphX / 2);
+			segment.setOffsetY(Program.HEIGHT / 2 - graphY / 2);
+		}
 	}
 	
 	public void render(Graphics2D g2) {
