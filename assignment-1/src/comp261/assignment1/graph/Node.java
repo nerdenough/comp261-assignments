@@ -2,11 +2,13 @@ package comp261.assignment1.graph;
 
 import java.awt.Graphics2D;
 
+import comp261.assignment1.Program;
 import comp261.assignment1.helper.LocationHelper;
 
 public class Node {
 	private int id;
 	private double lat, lon, x, y, offsetX, offsetY;
+	private boolean view;
 	
 	public Node(int id, double lat, double lon) {
 		this.id = id;
@@ -17,8 +19,18 @@ public class Node {
 		y = LocationHelper.getLocY(lon);
 	}
 	
+	public void update() {
+		boolean viewX = getLocX() > 0 && getLocX() <= Program.WIDTH;
+		boolean viewY = getLocY() > 0 && getLocY() <= Program.HEIGHT;
+		view = viewX && viewY;
+	}
+	
 	public void render(Graphics2D g2) {
 		g2.drawRect((int) (x + offsetX - 1), (int) (y + offsetY - 1), 3, 3);
+	}
+	
+	public boolean inView() {
+		return view;
 	}
 	
 	public int getId() {

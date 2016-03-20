@@ -40,6 +40,7 @@ public class Graph {
 			Node node = entry.getValue();
 			node.setOffsetX(Program.WIDTH / 2 - graphX / 2);
 			node.setOffsetY(Program.HEIGHT / 2 - graphY / 2);
+			node.update();
 		}
 		
 		for (Segment segment : segments) {
@@ -52,12 +53,7 @@ public class Graph {
 		g2.setColor(Color.BLACK);
 		for (Map.Entry<Integer, Node> entry : nodes.entrySet()) {
 			Node node = entry.getValue();
-			boolean viewX = node.getLocX() > 0 && node.getLocX() <= Program.WIDTH;
-			boolean viewY = node.getLocY() > 0 && node.getLocY() <= Program.HEIGHT;
-			
-			if (viewX && viewY) {				
-				node.render(g2);
-			}
+			if (node.inView()) node.render(g2);
 		}
 		
 		for (Segment segment : segments) {

@@ -16,27 +16,33 @@ public class Segment {
 	}
 	
 	public void render(Graphics2D g2) {
-		int[] xPoints = new int[points.size()];
-		int[] yPoints = new int[points.size()];
-		
-		for (int i = 0; i < points.size(); i++) {
-			Point point = points.get(i);
-			xPoints[i] = (int) point.getLocX();
-			yPoints[i] = (int) point.getLocY();
+		if (n1.inView() || n2.inView()) {
+			int[] xPoints = new int[points.size()];
+			int[] yPoints = new int[points.size()];
+			
+			for (int i = 0; i < points.size(); i++) {
+				Point point = points.get(i);
+				xPoints[i] = (int) point.getLocX();
+				yPoints[i] = (int) point.getLocY();
+			}
+					
+			g2.drawPolyline(xPoints, yPoints, xPoints.length);
 		}
-				
-		g2.drawPolyline(xPoints, yPoints, xPoints.length);
 	}
 	
 	public void setOffsetX(double offsetX) {
-		for (Point point : points) {
-			point.setOffsetX(offsetX);
+		if (n1.inView() || n2.inView()) {
+			for (Point point : points) {
+				point.setOffsetX(offsetX);
+			}
 		}
 	}
 	
 	public void setOffsetY(double offsetY) {
-		for (Point point : points) {
-			point.setOffsetY(offsetY);
+		if (n1.inView() || n2.inView()) {
+			for (Point point : points) {
+				point.setOffsetY(offsetY);
+			}
 		}
 	}
 }
