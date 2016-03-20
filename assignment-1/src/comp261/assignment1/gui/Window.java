@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -86,7 +88,17 @@ public class Window extends JFrame implements ActionListener {
 		String cmd = e.getActionCommand();
 		
 		if (cmd == "load") {
-			// TODO: Show JFileChooser
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			int returnVal = chooser.showOpenDialog(this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				try {
+					program.loadData(chooser.getSelectedFile().getAbsolutePath());
+				} catch (Exception ex) {
+					String error = "No valid data found in this directory!";
+					JOptionPane.showConfirmDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		} else if (cmd == "search") {
 			// TODO: Implement search
 		} else {

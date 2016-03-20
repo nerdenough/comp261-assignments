@@ -57,6 +57,10 @@ public class Program extends Canvas implements Runnable {
 		setFocusable(true);
 		requestFocus();
 	}
+	
+	public void loadData(String directory) {
+		// TODO: Load data
+	}
 
 	/**
 	 * Updates the canvas for the current frame by updating the state manager.
