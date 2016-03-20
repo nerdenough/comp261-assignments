@@ -17,6 +17,7 @@ import comp261.assignment1.Program;
 @SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener {
 	private Program program;
+	private JTextField txtSearch;
 	
 	public Window(Program program) {
 		super("The Auckland Road System");
@@ -46,7 +47,7 @@ public class Window extends JFrame implements ActionListener {
 		JButton btnZoomOut = new JButton("Zoom Out");
 		JButton btnSearch = new JButton("Search");
 		
-		JTextField txtSearch = new JTextField(20);
+		txtSearch = new JTextField(20);
 		
 		btnLoad.setActionCommand("load");
 		btnUp.setActionCommand("up");
@@ -100,7 +101,7 @@ public class Window extends JFrame implements ActionListener {
 				}
 			}
 		} else if (cmd == "search") {
-			// TODO: Implement search
+			program.searchFor(txtSearch.getText());
 		} else {
 			program.buttonPressed(cmd);
 		}

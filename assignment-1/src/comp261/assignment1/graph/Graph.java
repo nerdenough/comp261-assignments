@@ -101,4 +101,15 @@ public class Graph {
 			}
 		}
 	}
+	
+	public void searchFor(String query) {
+		for (Segment segment : segments) {
+			segment.setHighlighted(false);
+			
+			if (segment.getRoad().getLabel().toLowerCase().equals(query.toLowerCase())) {
+				System.out.println("Match! Road is highlighted");
+				segment.setHighlighted(true);
+			}
+		}
+	}
 }

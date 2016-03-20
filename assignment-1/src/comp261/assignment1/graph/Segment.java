@@ -1,10 +1,13 @@
 package comp261.assignment1.graph;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.List;
 
 public class Segment {
 	private int id;
+	private boolean highlighted;
+	
 	private Node n1, n2;
 	private Road road;
 	private List<Point> points;
@@ -19,6 +22,9 @@ public class Segment {
 	
 	public void render(Graphics2D g2) {
 		if (n1.inView() || n2.inView()) {
+			Color col = g2.getColor();
+			if (highlighted) g2.setColor(Color.RED);
+			
 			int[] xPoints = new int[points.size()];
 			int[] yPoints = new int[points.size()];
 			
@@ -29,10 +35,15 @@ public class Segment {
 			}
 					
 			g2.drawPolyline(xPoints, yPoints, xPoints.length);
+			g2.setColor(col);
 		}
 	}
 	
 	public Road getRoad() {
 		return road;
+	}
+	
+	public void setHighlighted(boolean highlighted) {
+		this.highlighted = highlighted;
 	}
 }

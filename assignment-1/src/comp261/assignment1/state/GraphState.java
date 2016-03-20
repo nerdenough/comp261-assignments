@@ -76,4 +76,9 @@ public class GraphState extends State {
 	public void mousePressed(int x, int y) {
 		graph.mousePressed(x, y);
 	}
+	
+	@Override
+	public void searchFor(String query) {
+		graph.searchFor(query);
+	}
 }

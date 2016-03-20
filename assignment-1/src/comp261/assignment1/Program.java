@@ -149,6 +149,10 @@ public class Program extends Canvas implements Runnable {
 	public void buttonPressed(String cmd) {
 		sm.buttonPressed(cmd);
 	}
+	
+	public void searchFor(String query) {
+		sm.searchFor(query);
+	}
 
 	/**
 	 * Initialises and starts the thread for the canvas.

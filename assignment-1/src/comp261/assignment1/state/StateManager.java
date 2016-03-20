@@ -77,4 +77,8 @@ public class StateManager {
 	public void buttonPressed(String cmd) {
 		states.get(state).buttonPressed(cmd);
 	}
+	
+	public void searchFor(String query) {
+		states.get(state).searchFor(query);
+	}
 }

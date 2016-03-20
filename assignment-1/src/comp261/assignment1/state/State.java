@@ -84,4 +84,8 @@ public abstract class State {
 		buttons[4] = cmd == "zoomIn";
 		buttons[5] = cmd == "zoomOut";
 	}
+	
+	public void searchFor(String query) {
+		
+	}
 }
