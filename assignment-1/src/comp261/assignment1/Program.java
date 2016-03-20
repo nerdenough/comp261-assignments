@@ -9,10 +9,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-
 import comp261.assignment1.graph.Graph;
+import comp261.assignment1.gui.Window;
 import comp261.assignment1.handler.KeyHandler;
 import comp261.assignment1.handler.MouseMotionHandler;
 import comp261.assignment1.state.StateManager;
@@ -50,15 +48,9 @@ public class Program extends Canvas implements Runnable {
 
 		sm = new StateManager();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-
-		JFrame frame = new JFrame("The Auckland Road System");
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.add(this);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
 		
+		new Window(this);
+
 		addKeyListener(new KeyHandler(sm));
 		addMouseMotionListener(new MouseMotionHandler(sm));
 		setFocusable(true);
