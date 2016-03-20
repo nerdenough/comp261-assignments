@@ -2,6 +2,8 @@ package comp261.assignment1.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +28,7 @@ public class Graph {
 		try {
 			nodes = FileHelper.getNodes(directory);
 			roads = FileHelper.getRoads(directory);
-			segments = FileHelper.getSegments(directory, nodes);
+			segments = FileHelper.getSegments(directory, nodes, roads);
 			graphX = Program.WIDTH / 2;
 			graphY = Program.HEIGHT / 2;
 		} catch (Exception e) {
@@ -52,10 +54,34 @@ public class Graph {
 		for (Map.Entry<Integer, Node> entry : nodes.entrySet()) {
 			Node node = entry.getValue();
 			if (node.inView()) {
-				if (node.isSelected()) g2.setColor(colNodeSelected);
-				else g2.setColor(colNode);
+				if (node.isSelected()) {
+					g2.setColor(colNodeSelected);
+				} else {
+					g2.setColor(colNode);
+				}
 				
 				node.render(g2);
+				
+				if (node.isSelected()) {
+					g2.setColor(Color.WHITE);
+					g2.fillRect(Program.WIDTH - 240, 0, 240, 240);
+					g2.setColor(Color.RED);
+					g2.drawRect(Program.WIDTH - 240, 0, 239, 240);
+					
+					int i = 0;
+					String[] names = new String[node.getSegments().size()];
+					g2.setColor(Color.RED);
+					g2.drawString("Node: " + node.getId(), Program.WIDTH - 230, 20);
+					for (Segment segment : node.getSegments()) {
+						if (!Arrays.asList(names).contains(segment.getRoad().getLabel())) {
+							String name = segment.getRoad().getLabel();
+							String city = segment.getRoad().getCity();
+							names[i] = name;
+							g2.drawString(name + ", " + city, Program.WIDTH - 230, 40 + 20 * i);
+							i++;
+						}
+					}
+				}
 			}
 		}
 	}

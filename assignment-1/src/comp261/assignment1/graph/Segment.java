@@ -6,12 +6,14 @@ import java.util.List;
 public class Segment {
 	private int id;
 	private Node n1, n2;
+	private Road road;
 	private List<Point> points;
 	
-	public Segment(int id, Node n1, Node n2, List<Point> points) {
+	public Segment(int id, Node n1, Node n2, Road road, List<Point> points) {
 		this.id = id;
 		this.n1 = n1;
 		this.n2 = n2;
+		this.road = road;
 		this.points = points;
 	}
 	
@@ -28,5 +30,9 @@ public class Segment {
 					
 			g2.drawPolyline(xPoints, yPoints, xPoints.length);
 		}
+	}
+	
+	public Road getRoad() {
+		return road;
 	}
 }

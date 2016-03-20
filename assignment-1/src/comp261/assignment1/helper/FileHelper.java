@@ -3,17 +3,12 @@ package comp261.assignment1.helper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.JOptionPane;
-
-import comp261.assignment1.Program;
 import comp261.assignment1.graph.Node;
 import comp261.assignment1.graph.Point;
 import comp261.assignment1.graph.Road;
@@ -65,7 +60,7 @@ public class FileHelper {
 	 * 
 	 * @return segments
 	 */
-	public static Set<Segment> getSegments(String directory, HashMap<Integer, Node> nodes) throws Exception {
+	public static Set<Segment> getSegments(String directory, HashMap<Integer, Node> nodes, HashMap<Integer, Road> roads) throws Exception {
 		Set<Segment> segments = new HashSet<>();
 
 		try {
@@ -84,8 +79,9 @@ public class FileHelper {
 				int id = Integer.parseInt(fields[0]);
 				Node n1 = nodes.get(Integer.parseInt(fields[2]));
 				Node n2 = nodes.get(Integer.parseInt(fields[3]));
+				Road road = roads.get(id);
 
-				Segment segment = new Segment(id, n1, n2, points);
+				Segment segment = new Segment(id, n1, n2, road, points);
 				
 				points.add(new Point(n1.getLat(), n1.getLon()));
 				

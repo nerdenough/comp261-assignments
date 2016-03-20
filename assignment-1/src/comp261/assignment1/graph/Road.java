@@ -9,4 +9,12 @@ public class Road {
 		this.label = label;
 		this.city = city;
 	}
+	
+	public String getLabel() {
+		return label;
+	}
+	
+	public String getCity() {
+		return city;
+	}
 }
