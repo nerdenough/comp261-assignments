@@ -1,5 +1,6 @@
 package comp261.assignment1.graph;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +11,7 @@ import comp261.assignment1.helper.LocationHelper;
 public class Node {
 	private int id;
 	private double lat, lon, x, y;
-	private boolean view;
+	private boolean view, selected;
 	
 	private Set<Segment> segments;
 	
@@ -32,7 +33,17 @@ public class Node {
 	}
 	
 	public void render(Graphics2D g2) {
-		g2.fillRect((int) (x * (Graph.zoom / 100) + Graph.graphX - 2), (int) (y * (Graph.zoom / 100) + Graph.graphY - 2), 4, 4);
+		Color col = g2.getColor();
+		
+		if (selected) {
+			g2.setColor(Color.BLACK);
+			for (Segment segment : segments) {
+				segment.render(g2);
+			}
+		}
+		
+		g2.setColor(col);
+		g2.fillRect((int) (getLocX() - 2), (int) (getLocY() - 2), 4, 4);
 	}
 	
 	public Set<Segment> getSegments() {
@@ -41,6 +52,10 @@ public class Node {
 	
 	public boolean inView() {
 		return view;
+	}
+	
+	public boolean isSelected() {
+		return selected;
 	}
 	
 	public int getId() {
@@ -55,11 +70,15 @@ public class Node {
 		return lon;
 	}
 	
-	public double getLocX() {
-		return x * (Graph.zoom / 100) + Graph.graphX;
+	public float getLocX() {
+		return (float) (x * (Graph.zoom / 100) + Graph.graphX);
 	}
 	
-	public double getLocY() {
-		return y * (Graph.zoom / 100) + Graph.graphY;
+	public float getLocY() {
+		return (float) (y * (Graph.zoom / 100) + Graph.graphY);
+	}
+	
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

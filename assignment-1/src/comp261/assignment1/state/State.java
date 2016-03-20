@@ -61,6 +61,11 @@ public abstract class State {
 		if (key == KeyEvent.VK_Q) keys[5] = false;
 	}
 	
+	public void mousePressed(int x, int y) {
+		mouseX = x;
+		mouseY = y;
+	}
+	
 	/**
 	 * Handles a mouse drag event
 	 * @param x - x drag coord

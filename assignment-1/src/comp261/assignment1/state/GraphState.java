@@ -71,4 +71,9 @@ public class GraphState extends State {
 			graph.render(g2);
 		}
 	}
+	
+	@Override
+	public void mousePressed(int x, int y) {
+		graph.mousePressed(x, y);
+	}
 }

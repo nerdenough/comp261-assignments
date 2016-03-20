@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import comp261.assignment1.graph.Graph;
 import comp261.assignment1.gui.Window;
 import comp261.assignment1.handler.KeyHandler;
+import comp261.assignment1.handler.MouseHandler;
 import comp261.assignment1.handler.MouseMotionHandler;
 import comp261.assignment1.state.GraphState;
 import comp261.assignment1.state.StateManager;
@@ -53,7 +54,9 @@ public class Program extends Canvas implements Runnable {
 		new Window(this);
 
 		addKeyListener(new KeyHandler(sm));
+		addMouseListener(new MouseHandler(sm));
 		addMouseMotionListener(new MouseMotionHandler(sm));
+		
 		setFocusable(true);
 		requestFocus();
 	}

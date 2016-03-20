@@ -65,6 +65,10 @@ public class StateManager {
 	public void keyReleased(int key) {
 		states.get(state).keyReleased(key);
 	}
+	
+	public void mousePressed(int x, int y) {
+		states.get(state).mousePressed(x, y);
+	}
 
 	public void mouseDragged(int x, int y) {
 		states.get(state).mouseDragged(x, y);

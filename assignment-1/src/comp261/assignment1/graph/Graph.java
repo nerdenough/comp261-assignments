@@ -42,15 +42,37 @@ public class Graph {
 	}
 	
 	public void render(Graphics2D g2) {
-		g2.setColor(new Color(120, 120, 120));
+		g2.setColor(new Color(200, 200, 200));
 		for (Segment segment : segments) {
 			segment.render(g2);
 		}
 		
-		g2.setColor(new Color(200, 50, 50));
+		Color colNode = new Color(100, 50, 50);
+		Color colNodeSelected = new Color(255, 50, 50);
 		for (Map.Entry<Integer, Node> entry : nodes.entrySet()) {
 			Node node = entry.getValue();
-			if (node.inView()) node.render(g2);
+			if (node.inView()) {
+				if (node.isSelected()) g2.setColor(colNodeSelected);
+				else g2.setColor(colNode);
+				
+				node.render(g2);
+			}
+		}
+	}
+	
+	public void mousePressed(int x, int y) {
+		for (Map.Entry<Integer, Node> entry : nodes.entrySet()) {
+			Node node = entry.getValue();
+			node.setSelected(false);
+			
+			float nodeX = node.getLocX();
+			float nodeY = node.getLocY();
+			
+			if (x >= nodeX - 5 && x <= nodeX + 5) {
+				if (y >= nodeY - 5 && y <= nodeY + 5) {
+					node.setSelected(true);
+				}
+			}
 		}
 	}
 }
