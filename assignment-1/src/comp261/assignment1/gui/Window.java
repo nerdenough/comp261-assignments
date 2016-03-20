@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import comp261.assignment1.Program;
 
@@ -18,11 +19,11 @@ public class Window extends JFrame implements ActionListener {
 	public Window(Program program) {
 		super("The Auckland Road System");
 		this.program = program;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
 		
 		init();
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -30,7 +31,9 @@ public class Window extends JFrame implements ActionListener {
 	
 	public void init() {
 		JPanel container = new JPanel(new BorderLayout());
-		JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel topPanel = new JPanel(new BorderLayout());
+		JPanel topLeftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel topRightPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
 		JButton btnLoad = new JButton("Load");
 		JButton btnUp = new JButton("Up");
@@ -39,6 +42,9 @@ public class Window extends JFrame implements ActionListener {
 		JButton btnRight = new JButton("Right");
 		JButton btnZoomIn = new JButton("Zoom In");
 		JButton btnZoomOut = new JButton("Zoom Out");
+		JButton btnSearch = new JButton("Search");
+		
+		JTextField txtSearch = new JTextField(20);
 		
 		btnLoad.setActionCommand("load");
 		btnUp.setActionCommand("up");
@@ -47,6 +53,7 @@ public class Window extends JFrame implements ActionListener {
 		btnRight.setActionCommand("right");
 		btnZoomIn.setActionCommand("zoomIn");
 		btnZoomOut.setActionCommand("zoomOut");
+		btnSearch.setActionCommand("search");
 		
 		btnLoad.addActionListener(this);
 		btnUp.addActionListener(this);
@@ -55,16 +62,22 @@ public class Window extends JFrame implements ActionListener {
 		btnRight.addActionListener(this);
 		btnZoomIn.addActionListener(this);
 		btnZoomOut.addActionListener(this);
+		btnSearch.addActionListener(this);
 		
-		top.add(btnLoad);
-		top.add(btnUp);
-		top.add(btnDown);
-		top.add(btnLeft);
-		top.add(btnRight);
-		top.add(btnZoomIn);
-		top.add(btnZoomOut);
+		topLeftPanel.add(btnLoad);
+		topLeftPanel.add(btnUp);
+		topLeftPanel.add(btnDown);
+		topLeftPanel.add(btnLeft);
+		topLeftPanel.add(btnRight);
+		topLeftPanel.add(btnZoomIn);
+		topLeftPanel.add(btnZoomOut);
 		
-		container.add(top, BorderLayout.NORTH);
+		topRightPanel.add(txtSearch);
+		topRightPanel.add(btnSearch);
+		
+		topPanel.add(topLeftPanel, BorderLayout.WEST);
+		topPanel.add(topRightPanel, BorderLayout.EAST);
+		container.add(topPanel, BorderLayout.NORTH);
 		container.add(program, BorderLayout.CENTER);
 		add(container);
 	}
@@ -74,6 +87,8 @@ public class Window extends JFrame implements ActionListener {
 		
 		if (cmd == "load") {
 			// TODO: Show JFileChooser
+		} else if (cmd == "search") {
+			// TODO: Implement search
 		} else {
 			program.buttonPressed(cmd);
 		}
