@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -134,6 +135,10 @@ public class Program extends Canvas implements Runnable {
 				frames = 0;
 			}
 		}
+	}
+	
+	public void buttonPressed(String cmd) {
+		sm.buttonPressed(cmd);
 	}
 
 	/**

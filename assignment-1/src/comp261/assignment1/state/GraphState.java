@@ -25,6 +25,15 @@ public class GraphState extends State {
 		if (keys[1]) deltaY += 4;
 		if (keys[2]) deltaX -= 4;
 		if (keys[3]) deltaX += 4;
+		if (keys[4]) Graph.zoom += 1;
+		if (keys[5]) Graph.zoom -= 1;
+		
+		if (buttons[0]) deltaY -= 4 * Graph.zoom;
+		if (buttons[1]) deltaY += 4 * Graph.zoom;
+		if (buttons[2]) deltaX -= 4 * Graph.zoom;
+		if (buttons[3]) deltaX += 4 * Graph.zoom;
+		if (buttons[4]) Graph.zoom += 10;
+		if (buttons[5]) Graph.zoom -= 10;
 		
 		deltaX += prevMouseX - mouseX;
 		deltaY += prevMouseY - mouseY;
@@ -36,6 +45,10 @@ public class GraphState extends State {
 		graph.setGraphY(graph.getGraphY() + deltaY);
 		
 		graph.update();
+		
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i] = false;
+		}
 	}
 	
 	/*

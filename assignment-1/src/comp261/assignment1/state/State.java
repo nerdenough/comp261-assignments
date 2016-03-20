@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
  */
 
 public abstract class State {
-	public boolean[] keys;
+	public boolean[] keys, buttons;
 	public int mouseX, mouseY, prevMouseX, prevMouseY;
 	
 	/**
@@ -20,6 +20,7 @@ public abstract class State {
 	 */
 	public State() {
 		keys = new boolean[10];
+		buttons = new boolean[10];
 	}
 
 	/**
@@ -68,5 +69,14 @@ public abstract class State {
 	public void mouseDragged(int x, int y) {
 		mouseX = x;
 		mouseY = y;
+	}
+	
+	public void buttonPressed(String cmd) {
+		buttons[0] = cmd == "up";
+		buttons[1] = cmd == "down";
+		buttons[2] = cmd == "left";
+		buttons[3] = cmd == "right";
+		buttons[4] = cmd == "zoomIn";
+		buttons[5] = cmd == "zoomOut";
 	}
 }

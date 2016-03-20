@@ -50,4 +50,8 @@ public class StateManager {
 	public void mouseDragged(int x, int y) {
 		states.get(state).mouseDragged(x, y);
 	}
+	
+	public void buttonPressed(String cmd) {
+		states.get(state).buttonPressed(cmd);
+	}
 }

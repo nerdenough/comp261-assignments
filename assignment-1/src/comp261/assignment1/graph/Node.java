@@ -34,11 +34,11 @@ public class Node {
 	}
 	
 	public double getLocX() {
-		return x + offsetX;
+		return (x + offsetX) * (Graph.zoom / 100);
 	}
 	
 	public double getLocY() {
-		return y + offsetY;
+		return (y + offsetY) * (Graph.zoom / 100);
 	}
 	
 	public void setOffsetX(double offsetX) {
