@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import comp261.assignment1.graph.Node;
 import comp261.assignment1.graph.Point;
+import comp261.assignment1.graph.Polygon;
 import comp261.assignment1.graph.Road;
 import comp261.assignment1.graph.Segment;
 
@@ -144,5 +146,61 @@ public class FileHelper {
 		}
 
 		return roads;
+	}
+	
+	public static Set<Polygon> getPolygons(String directory) {
+		Set<Polygon> polygons = new HashSet<>();
+		
+		try {
+			String line;
+			String filepath = String.format("%s/polygons.mp", directory);
+
+			BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
+
+			// Skip top line
+			br.readLine();
+			
+			boolean inPoly = false;
+			int type = 0;
+			List<Point> points = new ArrayList<>();
+			while ((line = br.readLine()) != null) {
+				if (line.contains("[POLYGON]")) {
+					inPoly = true;
+					type = 0;
+					points = new ArrayList<>();
+				} else if (line.contains("[END]")) {
+					inPoly = false;
+					Polygon polygon = new Polygon(type, points);
+					polygons.add(polygon);
+				}
+				
+				if (inPoly) {
+					if (line.startsWith("Type=")) {
+						line = line.substring(7);
+						type = Integer.parseInt(line, 16);
+					}
+					
+					if (line.startsWith("Data0=")) {
+						line = line.substring(6);
+						line = line.replace("(", "");
+						line = line.replace(")", "");
+						line = line.replace(",", " ");
+						
+						Scanner sc = new Scanner(line);
+						while (sc.hasNextDouble()) {
+							Point point = new Point(sc.nextDouble(), sc.nextDouble());
+							points.add(point);
+						}
+						sc.close();
+					}
+				}
+			}
+			
+			br.close();
+		} catch (Exception e) {
+			// File may not exist
+		}
+		
+		return polygons;
 	}
 }

@@ -1,16 +1,25 @@
 package comp261.assignment1.state;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import comp261.assignment1.Program;
 import comp261.assignment1.graph.Graph;
 
 public class GraphState extends State {
 	private Graph graph;
+	private BufferedImage compass;
 	
 	public GraphState() {
 		super();
+		try {
+			compass = ImageIO.read(Program.class.getResourceAsStream("/images/compass.png"));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Some resources are missing!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	public void init(String directory) {
@@ -70,6 +79,8 @@ public class GraphState extends State {
 		if (graph != null) {
 			graph.render(g2);
 		}
+		
+		g2.drawImage(compass, 0, 0, null);
 	}
 	
 	@Override

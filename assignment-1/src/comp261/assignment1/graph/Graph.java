@@ -15,6 +15,7 @@ public class Graph {
 	private HashMap<Integer, Node> nodes;
 	private HashMap<Integer, Road> roads;
 	private Set<Segment> segments;
+	private Set<Polygon> polygons;
 	
 	private Trie trie;
 	
@@ -31,6 +32,7 @@ public class Graph {
 			nodes = FileHelper.getNodes(directory);
 			roads = FileHelper.getRoads(directory);
 			segments = FileHelper.getSegments(directory, nodes, roads);
+			polygons = FileHelper.getPolygons(directory);
 			
 			trie = new Trie();
 			for (Map.Entry<Integer, Road> entry : roads.entrySet()) {
@@ -53,6 +55,15 @@ public class Graph {
 	}
 	
 	public void render(Graphics2D g2) {
+		for (Polygon polygon : polygons) {
+			if (polygon.getType() == 0x28) g2.setColor(Color.BLUE);
+			else if (polygon.getType() == 0x17) g2.setColor(Color.GREEN);
+			else if (polygon.getType() == 0x0e) g2.setColor(Color.GRAY);
+			else if (polygon.getType() == 0x07) g2.setColor(Color.LIGHT_GRAY);
+			else g2.setColor(Color.WHITE);
+			polygon.render(g2);
+		}
+		
 		g2.setColor(new Color(200, 200, 200));
 		for (Segment segment : segments) {
 			segment.render(g2);
