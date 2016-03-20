@@ -39,23 +39,37 @@ public class StateManager {
 	public void render(Graphics2D g2) {
 		states.get(state).render(g2);
 	}
-	
+
+	/**
+	 * Returns the current state.
+	 * 
+	 * @return current state
+	 */
+	public State getState() {
+		return states.get(state);
+	}
+
+	/**
+	 * Sets the state to be updated and rendered.
+	 * 
+	 * @param state - new state
+	 */
 	public void setState(int state) {
 		this.state = state;
 	}
-	
+
 	public void keyPressed(int key) {
 		states.get(state).keyPressed(key);
 	}
-	
+
 	public void keyReleased(int key) {
 		states.get(state).keyReleased(key);
 	}
-	
+
 	public void mouseDragged(int x, int y) {
 		states.get(state).mouseDragged(x, y);
 	}
-	
+
 	public void buttonPressed(String cmd) {
 		states.get(state).buttonPressed(cmd);
 	}

@@ -1,6 +1,8 @@
 package comp261.assignment1.helper;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -9,8 +11,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import comp261.assignment1.Program;
-import comp261.assignment1.graph.Graph.GraphType;
 import comp261.assignment1.graph.Node;
 import comp261.assignment1.graph.Point;
 import comp261.assignment1.graph.Road;
@@ -28,17 +31,14 @@ public class FileHelper {
 	 * 
 	 * @return nodes
 	 */
-	public static HashMap<Integer, Node> getNodes(GraphType type) {
+	public static HashMap<Integer, Node> getNodes(String directory) {
 		HashMap<Integer, Node> nodes = new HashMap<>();
 
 		try {
 			String line;
-			String folder = type == GraphType.SMALL ? "small" : "large";
-			String filepath = String.format("/data/%s/nodes.tab", folder);
+			String filepath = String.format("%s/nodes.tab", directory);
 
-			InputStream is = Program.class.getResourceAsStream(filepath);
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
+			BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
 
 			while ((line = br.readLine()) != null) {
 				String[] fields = line.split("\t");
@@ -51,8 +51,11 @@ public class FileHelper {
 
 				nodes.put(id, node);
 			}
+			
+			br.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			String error = "No valid data found in this directory!";
+			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return nodes;
@@ -63,17 +66,14 @@ public class FileHelper {
 	 * 
 	 * @return segments
 	 */
-	public static Set<Segment> getSegments(GraphType type, HashMap<Integer, Node> nodes) {
+	public static Set<Segment> getSegments(String directory, HashMap<Integer, Node> nodes) {
 		Set<Segment> segments = new HashSet<>();
 
 		try {
 			String line;
-			String folder = type == GraphType.SMALL ? "small" : "large";
-			String filepath = String.format("/data/%s/segments.tab", folder);
+			String filepath = String.format("%s/segments.tab", directory);
 
-			InputStream is = Program.class.getResourceAsStream(filepath);
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
+			BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
 
 			// Skip top line
 			br.readLine();
@@ -101,8 +101,11 @@ public class FileHelper {
 
 				segments.add(segment);
 			}
+			
+			br.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			String error = "No valid data found in this directory!";
+			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return segments;
@@ -114,17 +117,14 @@ public class FileHelper {
 	 * 
 	 * @return roads
 	 */
-	public static HashMap<Integer, Road> getRoads(GraphType type) {
+	public static HashMap<Integer, Road> getRoads(String directory) {
 		HashMap<Integer, Road> roads = new HashMap<>();
 
 		try {
 			String line;
-			String folder = type == GraphType.SMALL ? "small" : "large";
-			String filepath = String.format("/data/%s/roads.tab", folder);
+			String filepath = String.format("%s/roads.tab", directory);
 
-			InputStream is = Program.class.getResourceAsStream(filepath);
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
+			BufferedReader br = new BufferedReader(new FileReader(new File(filepath)));
 
 			// Skip top line
 			br.readLine();
@@ -140,8 +140,11 @@ public class FileHelper {
 
 				roads.put(id, road);
 			}
+			
+			br.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			String error = "No valid data found in this directory!";
+			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return roads;

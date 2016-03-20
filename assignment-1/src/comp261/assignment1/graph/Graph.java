@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import comp261.assignment1.Program;
 import comp261.assignment1.helper.FileHelper;
 
@@ -23,14 +25,10 @@ public class Graph {
 	
 	private double graphX, graphY;
 	
-	public enum GraphType {
-		SMALL, LARGE
-	};
-	
-	public Graph(GraphType type) {
-		nodes = FileHelper.getNodes(type);
-		roads = FileHelper.getRoads(type);
-		segments = FileHelper.getSegments(type, nodes);
+	public Graph(String directory) {
+		nodes = FileHelper.getNodes(directory);
+		roads = FileHelper.getRoads(directory);
+		segments = FileHelper.getSegments(directory, nodes);
 	}
 	
 	public void update() {

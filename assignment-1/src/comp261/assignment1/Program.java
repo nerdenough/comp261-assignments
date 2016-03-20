@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -14,6 +13,7 @@ import comp261.assignment1.graph.Graph;
 import comp261.assignment1.gui.Window;
 import comp261.assignment1.handler.KeyHandler;
 import comp261.assignment1.handler.MouseMotionHandler;
+import comp261.assignment1.state.GraphState;
 import comp261.assignment1.state.StateManager;
 
 /**
@@ -59,7 +59,9 @@ public class Program extends Canvas implements Runnable {
 	}
 	
 	public void loadData(String directory) {
-		// TODO: Load data
+		sm.setState(1);
+		GraphState state = (GraphState) sm.getState();
+		state.init(directory);
 	}
 
 	/**
