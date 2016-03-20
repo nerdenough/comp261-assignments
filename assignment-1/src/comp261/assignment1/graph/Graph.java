@@ -129,9 +129,11 @@ public class Graph {
 		
 		Set<Road> roads = trie.contains(query);
 		if (roads != null) {
-			System.out.println(query + " has a match!");
+			System.out.println("\"" + query + "\"" + " HAS MATCHES:");
 			
 			for (Road road : roads) {
+				System.out.println(road.getLabel());
+				
 				for (Segment segment : segments) {
 					if (segment.getRoad() == road) {
 						segment.setHighlighted(true);
