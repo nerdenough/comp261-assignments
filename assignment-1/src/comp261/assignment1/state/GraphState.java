@@ -51,8 +51,8 @@ public class GraphState extends State {
 			prevMouseX = mouseX;
 			prevMouseY = mouseY;
 			
-			graph.setGraphX(graph.getGraphX() + deltaX);
-			graph.setGraphY(graph.getGraphY() + deltaY);
+			Graph.graphX += deltaX;
+			Graph.graphY += deltaY;
 			
 			graph.update();
 		

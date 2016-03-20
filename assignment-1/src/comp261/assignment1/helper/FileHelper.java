@@ -98,11 +98,14 @@ public class FileHelper {
 				
 				points.add(new Point(n2.getLat(), n2.getLon()));
 
+				n1.getSegments().add(segment);
+				n2.getSegments().add(segment);
 				segments.add(segment);
 			}
 			
 			br.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new Exception();
 		}
 

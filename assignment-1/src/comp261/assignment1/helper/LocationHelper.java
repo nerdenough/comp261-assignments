@@ -15,8 +15,8 @@ public class LocationHelper {
 	 * @param lat - Latitude to convert
 	 * @return X location
 	 */
-	public static double getLocX(double lat) {
-		return (lat - Graph.CENTRE_LAT) * Graph.SCALE_LAT * Graph.zoom;
+	public static float getLocX(double lat) {
+		return (float) ((lat - Graph.CENTRE_LAT) * Graph.SCALE_LAT * Graph.zoom);
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class LocationHelper {
 	 * @param lon - Longitude to convert
 	 * @return Y location
 	 */
-	public static double getLocY(double lon) {
-		return (lon - Graph.CENTRE_LON) * Graph.SCALE_LON * Graph.zoom;
+	public static float getLocY(double lon) {
+		return (float) ((lon - Graph.CENTRE_LON) * Graph.SCALE_LON * Graph.zoom);
 	}
 }

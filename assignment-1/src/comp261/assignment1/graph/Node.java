@@ -1,14 +1,18 @@
 package comp261.assignment1.graph;
 
 import java.awt.Graphics2D;
+import java.util.HashSet;
+import java.util.Set;
 
 import comp261.assignment1.Program;
 import comp261.assignment1.helper.LocationHelper;
 
 public class Node {
 	private int id;
-	private double lat, lon, x, y, offsetX, offsetY;
+	private double lat, lon, x, y;
 	private boolean view;
+	
+	private Set<Segment> segments;
 	
 	public Node(int id, double lat, double lon) {
 		this.id = id;
@@ -17,6 +21,8 @@ public class Node {
 		
 		x = LocationHelper.getLocX(lat);
 		y = LocationHelper.getLocY(lon);
+		
+		segments = new HashSet<>();
 	}
 	
 	public void update() {
@@ -26,7 +32,11 @@ public class Node {
 	}
 	
 	public void render(Graphics2D g2) {
-		g2.drawRect((int) (x + offsetX - 1), (int) (y + offsetY - 1), 3, 3);
+		g2.fillRect((int) (x * (Graph.zoom / 100) + Graph.graphX - 2), (int) (y * (Graph.zoom / 100) + Graph.graphY - 2), 4, 4);
+	}
+	
+	public Set<Segment> getSegments() {
+		return segments;
 	}
 	
 	public boolean inView() {
@@ -46,18 +56,10 @@ public class Node {
 	}
 	
 	public double getLocX() {
-		return (x + offsetX) * (Graph.zoom / 100);
+		return x * (Graph.zoom / 100) + Graph.graphX;
 	}
 	
 	public double getLocY() {
-		return (y + offsetY) * (Graph.zoom / 100);
-	}
-	
-	public void setOffsetX(double offsetX) {
-		this.offsetX = offsetX;
-	}
-	
-	public void setOffsetY(double offsetY) {
-		this.offsetY = offsetY;
+		return y * (Graph.zoom / 100) + Graph.graphY;
 	}
 }

@@ -22,27 +22,11 @@ public class Segment {
 			
 			for (int i = 0; i < points.size(); i++) {
 				Point point = points.get(i);
-				xPoints[i] = (int) point.getLocX();
-				yPoints[i] = (int) point.getLocY();
+				xPoints[i] = (int) (point.getX() * (Graph.zoom / 100) + Graph.graphX);
+				yPoints[i] = (int) (point.getY() * (Graph.zoom / 100) + Graph.graphY);
 			}
 					
 			g2.drawPolyline(xPoints, yPoints, xPoints.length);
-		}
-	}
-	
-	public void setOffsetX(double offsetX) {
-		if (n1.inView() || n2.inView()) {
-			for (Point point : points) {
-				point.setOffsetX(offsetX);
-			}
-		}
-	}
-	
-	public void setOffsetY(double offsetY) {
-		if (n1.inView() || n2.inView()) {
-			for (Point point : points) {
-				point.setOffsetY(offsetY);
-			}
 		}
 	}
 }
