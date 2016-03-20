@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,7 +17,7 @@ import javax.swing.JTextField;
 import comp261.assignment1.Program;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame implements ActionListener {
+public class Window extends JFrame implements ActionListener, KeyListener {
 	private Program program;
 	private JTextField txtSearch;
 	
@@ -48,6 +50,7 @@ public class Window extends JFrame implements ActionListener {
 		JButton btnSearch = new JButton("Search");
 		
 		txtSearch = new JTextField(20);
+		txtSearch.addKeyListener(this);
 		
 		btnLoad.setActionCommand("load");
 		btnUp.setActionCommand("up");
@@ -101,9 +104,21 @@ public class Window extends JFrame implements ActionListener {
 				}
 			}
 		} else if (cmd == "search") {
-			program.searchFor(txtSearch.getText());
+			if (!txtSearch.getText().isEmpty()) {
+				program.searchFor(txtSearch.getText());
+			}
 		} else {
 			program.buttonPressed(cmd);
 		}
 	}
+	
+	public void keyPressed(KeyEvent e) { }
+	
+	public void keyReleased(KeyEvent e) {
+		if (!txtSearch.getText().isEmpty()) {
+			program.searchFor(txtSearch.getText());
+		}
+	}
+	
+	public void keyTyped(KeyEvent e) { }
 }

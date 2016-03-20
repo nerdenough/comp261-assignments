@@ -2,19 +2,21 @@ package comp261.assignment1.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import comp261.assignment1.Program;
+import comp261.assignment1.data.Trie;
 import comp261.assignment1.helper.FileHelper;
 
 public class Graph {
 	private HashMap<Integer, Node> nodes;
 	private HashMap<Integer, Road> roads;
 	private Set<Segment> segments;
+	
+	private Trie trie;
 	
 	public static final double CENTRE_LAT = -36.868816;
 	public static final double CENTRE_LON = 174.744800;
@@ -29,6 +31,13 @@ public class Graph {
 			nodes = FileHelper.getNodes(directory);
 			roads = FileHelper.getRoads(directory);
 			segments = FileHelper.getSegments(directory, nodes, roads);
+			
+			trie = new Trie();
+			for (Map.Entry<Integer, Road> entry : roads.entrySet()) {
+				Road road = entry.getValue();
+				trie.addString(road.getLabel(), road);
+			}
+			
 			graphX = Program.WIDTH / 2;
 			graphY = Program.HEIGHT / 2;
 		} catch (Exception e) {
@@ -105,10 +114,18 @@ public class Graph {
 	public void searchFor(String query) {
 		for (Segment segment : segments) {
 			segment.setHighlighted(false);
+		}
+		
+		Set<Road> roads = trie.contains(query);
+		if (roads != null) {
+			System.out.println(query + " has a match!");
 			
-			if (segment.getRoad().getLabel().toLowerCase().equals(query.toLowerCase())) {
-				System.out.println("Match! Road is highlighted");
-				segment.setHighlighted(true);
+			for (Road road : roads) {
+				for (Segment segment : segments) {
+					if (segment.getRoad() == road) {
+						segment.setHighlighted(true);
+					}
+				}
 			}
 		}
 	}
