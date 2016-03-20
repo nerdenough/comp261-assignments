@@ -2,6 +2,8 @@ package comp261.assignment1.state;
 
 import java.awt.Graphics2D;
 
+import javax.swing.JOptionPane;
+
 import comp261.assignment1.graph.Graph;
 
 public class GraphState extends State {
@@ -12,7 +14,12 @@ public class GraphState extends State {
 	}
 	
 	public void init(String directory) {
-		graph = new Graph(directory);
+		try {
+			graph = new Graph(directory);
+		} catch (Exception e) {
+			String error = "No valid data found in this directory!";
+			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/*

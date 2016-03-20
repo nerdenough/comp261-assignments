@@ -25,10 +25,14 @@ public class Graph {
 	
 	private double graphX, graphY;
 	
-	public Graph(String directory) {
-		nodes = FileHelper.getNodes(directory);
-		roads = FileHelper.getRoads(directory);
-		segments = FileHelper.getSegments(directory, nodes);
+	public Graph(String directory) throws Exception {
+		try {
+			nodes = FileHelper.getNodes(directory);
+			roads = FileHelper.getRoads(directory);
+			segments = FileHelper.getSegments(directory, nodes);
+		} catch (Exception e) {
+			throw new Exception();
+		}
 	}
 	
 	public void update() {

@@ -31,7 +31,7 @@ public class FileHelper {
 	 * 
 	 * @return nodes
 	 */
-	public static HashMap<Integer, Node> getNodes(String directory) {
+	public static HashMap<Integer, Node> getNodes(String directory) throws Exception {
 		HashMap<Integer, Node> nodes = new HashMap<>();
 
 		try {
@@ -54,8 +54,7 @@ public class FileHelper {
 			
 			br.close();
 		} catch (Exception e) {
-			String error = "No valid data found in this directory!";
-			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+			throw new Exception();
 		}
 
 		return nodes;
@@ -66,7 +65,7 @@ public class FileHelper {
 	 * 
 	 * @return segments
 	 */
-	public static Set<Segment> getSegments(String directory, HashMap<Integer, Node> nodes) {
+	public static Set<Segment> getSegments(String directory, HashMap<Integer, Node> nodes) throws Exception {
 		Set<Segment> segments = new HashSet<>();
 
 		try {
@@ -104,8 +103,7 @@ public class FileHelper {
 			
 			br.close();
 		} catch (Exception e) {
-			String error = "No valid data found in this directory!";
-			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+			throw new Exception();
 		}
 
 		return segments;
@@ -117,7 +115,7 @@ public class FileHelper {
 	 * 
 	 * @return roads
 	 */
-	public static HashMap<Integer, Road> getRoads(String directory) {
+	public static HashMap<Integer, Road> getRoads(String directory) throws Exception {
 		HashMap<Integer, Road> roads = new HashMap<>();
 
 		try {
@@ -143,8 +141,7 @@ public class FileHelper {
 			
 			br.close();
 		} catch (Exception e) {
-			String error = "No valid data found in this directory!";
-			JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+			throw new Exception();
 		}
 
 		return roads;
