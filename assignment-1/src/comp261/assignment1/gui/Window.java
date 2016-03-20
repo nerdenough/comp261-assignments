@@ -96,7 +96,7 @@ public class Window extends JFrame implements ActionListener {
 					program.loadData(chooser.getSelectedFile().getAbsolutePath());
 				} catch (Exception ex) {
 					String error = "No valid data found in this directory!";
-					JOptionPane.showConfirmDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		} else if (cmd == "search") {

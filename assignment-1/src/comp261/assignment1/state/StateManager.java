@@ -20,6 +20,7 @@ public class StateManager {
 	 */
 	public StateManager() {
 		states = new ArrayList<>();
+		states.add(new DefaultState());
 		states.add(new GraphState());
 	}
 
@@ -37,6 +38,10 @@ public class StateManager {
 	 */
 	public void render(Graphics2D g2) {
 		states.get(state).render(g2);
+	}
+	
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 	public void keyPressed(int key) {
