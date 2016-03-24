@@ -1,0 +1,4 @@
+In order for the program to run with the images loading correctly, the "res"
+folder must be used as a source folder within Eclipse.
+
+Alternatively, the runnable JAR should work straight away.
