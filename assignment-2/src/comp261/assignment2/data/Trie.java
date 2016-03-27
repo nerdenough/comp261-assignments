@@ -1,11 +1,11 @@
-package comp261.assignment1.data;
+package comp261.assignment2.data;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import comp261.assignment1.graph.Road;
+import comp261.assignment2.graph.Road;
 
 public class Trie {
 	private Map<Character, Trie> children;

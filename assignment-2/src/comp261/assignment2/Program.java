@@ -1,4 +1,4 @@
-package comp261.assignment1;
+package comp261.assignment2;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -9,16 +9,16 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import comp261.assignment1.graph.Graph;
-import comp261.assignment1.gui.Window;
-import comp261.assignment1.handler.KeyHandler;
-import comp261.assignment1.handler.MouseHandler;
-import comp261.assignment1.handler.MouseMotionHandler;
-import comp261.assignment1.state.GraphState;
-import comp261.assignment1.state.StateManager;
+import comp261.assignment2.graph.Graph;
+import comp261.assignment2.gui.Window;
+import comp261.assignment2.handler.KeyHandler;
+import comp261.assignment2.handler.MouseHandler;
+import comp261.assignment2.handler.MouseMotionHandler;
+import comp261.assignment2.state.GraphState;
+import comp261.assignment2.state.StateManager;
 
 /**
- * COMP261 Assignment 1
+ * COMP261 Assignment 2
  * The Auckland Road System
  * 
  * Program holds the main entry point for this assignment. Extending Canvas and

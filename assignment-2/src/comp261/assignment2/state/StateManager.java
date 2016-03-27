@@ -1,4 +1,4 @@
-package comp261.assignment1.state;
+package comp261.assignment2.state;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;

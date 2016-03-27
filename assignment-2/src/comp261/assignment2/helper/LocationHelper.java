@@ -1,6 +1,6 @@
-package comp261.assignment1.helper;
+package comp261.assignment2.helper;
 
-import comp261.assignment1.graph.Graph;
+import comp261.assignment2.graph.Graph;
 
 /**
  * LocationHelper contains a number of static methods for converting latitudes

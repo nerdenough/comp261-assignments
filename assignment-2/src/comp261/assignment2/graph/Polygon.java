@@ -1,4 +1,4 @@
-package comp261.assignment1.graph;
+package comp261.assignment2.graph;
 
 import java.awt.Graphics2D;
 import java.util.List;

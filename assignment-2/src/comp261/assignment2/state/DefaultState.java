@@ -1,4 +1,4 @@
-package comp261.assignment1.state;
+package comp261.assignment2.state;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import comp261.assignment1.Program;
+import comp261.assignment2.Program;
 
 public class DefaultState extends State {
 	private BufferedImage gettingStarted;

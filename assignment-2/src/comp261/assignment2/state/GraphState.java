@@ -1,4 +1,4 @@
-package comp261.assignment1.state;
+package comp261.assignment2.state;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import comp261.assignment1.Program;
-import comp261.assignment1.graph.Graph;
+import comp261.assignment2.Program;
+import comp261.assignment2.graph.Graph;
 
 public class GraphState extends State {
 	private Graph graph;

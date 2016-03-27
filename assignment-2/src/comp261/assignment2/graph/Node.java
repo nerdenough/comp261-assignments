@@ -1,12 +1,12 @@
-package comp261.assignment1.graph;
+package comp261.assignment2.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
 
-import comp261.assignment1.Program;
-import comp261.assignment1.helper.LocationHelper;
+import comp261.assignment2.Program;
+import comp261.assignment2.helper.LocationHelper;
 
 public class Node {
 	private int id;

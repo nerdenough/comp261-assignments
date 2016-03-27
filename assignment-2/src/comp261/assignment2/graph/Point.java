@@ -1,6 +1,6 @@
-package comp261.assignment1.graph;
+package comp261.assignment2.graph;
 
-import comp261.assignment1.helper.LocationHelper;
+import comp261.assignment2.helper.LocationHelper;
 
 public class Point {
 	private float x, y;

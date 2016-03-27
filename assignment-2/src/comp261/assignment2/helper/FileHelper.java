@@ -1,4 +1,4 @@
-package comp261.assignment1.helper;
+package comp261.assignment2.helper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import comp261.assignment1.graph.Node;
-import comp261.assignment1.graph.Point;
-import comp261.assignment1.graph.Polygon;
-import comp261.assignment1.graph.Road;
-import comp261.assignment1.graph.Segment;
+import comp261.assignment2.graph.Node;
+import comp261.assignment2.graph.Point;
+import comp261.assignment2.graph.Polygon;
+import comp261.assignment2.graph.Road;
+import comp261.assignment2.graph.Segment;
 
 /**
  * FileHelper contains a number of static methods used for loading data from the

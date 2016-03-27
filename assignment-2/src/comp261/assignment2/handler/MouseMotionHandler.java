@@ -1,9 +1,9 @@
-package comp261.assignment1.handler;
+package comp261.assignment2.handler;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
-import comp261.assignment1.state.StateManager;
+import comp261.assignment2.state.StateManager;
 
 public class MouseMotionHandler extends MouseMotionAdapter {
 	private StateManager sm;

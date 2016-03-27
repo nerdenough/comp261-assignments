@@ -1,4 +1,4 @@
-package comp261.assignment1.graph;
+package comp261.assignment2.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import comp261.assignment1.Program;
-import comp261.assignment1.data.Trie;
-import comp261.assignment1.helper.FileHelper;
+import comp261.assignment2.Program;
+import comp261.assignment2.data.Trie;
+import comp261.assignment2.helper.FileHelper;
 
 public class Graph {
 	private HashMap<Integer, Node> nodes;

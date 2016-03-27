@@ -1,4 +1,4 @@
-package comp261.assignment1.gui;
+package comp261.assignment2.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import comp261.assignment1.Program;
+import comp261.assignment2.Program;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener, KeyListener {
