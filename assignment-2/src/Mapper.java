@@ -7,6 +7,8 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.swing.SwingUtilities;
+
 /**
  * This is the main class for the mapping program. It extends the GUI abstract
  * class and implements all the methods necessary, as well as having a main
@@ -67,7 +69,11 @@ public class Mapper extends GUI {
 
 		// if it's close enough, highlight it and show some information.
 		if (clicked.distance(closest.location) < MAX_CLICKED_DISTANCE) {
-			graph.setHighlight(closest);
+			if (SwingUtilities.isLeftMouseButton(e)) {
+				graph.setFirstHighlight(closest);
+			} else {
+				graph.setSecondHighlight(closest);
+			}
 			getTextOutputArea().setText(closest.toString());
 		}
 	}

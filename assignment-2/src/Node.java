@@ -23,8 +23,8 @@ public class Node {
 	// A* Search
 	public List<Node> neighbours;
 	public Node parent;
-	public double fCost;
 	public Segment connecting;
+	public double cost, totalCost;
 	
 	public Node(int nodeID, double lat, double lon) {
 		this.nodeID = nodeID;

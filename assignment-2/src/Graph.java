@@ -71,29 +71,34 @@ public class Graph {
 		}
 	}
 
-	public void setHighlight(Node node) {		
-		if (firstSelectedNode != null) {
-			for (Segment s : segments) {
-				s.highlighted = false;
-			}
+	public void setFirstHighlight(Node node) {
+		for (Segment s : segments) {
+			s.highlighted = false;
+		}
+		
+		this.firstSelectedNode = node;
+	}
+	
+	public void setSecondHighlight(Node node) {
+		for (Segment s : segments) {
+			s.highlighted = false;
+		}
+		
+		this.secondSelectedNode = node;
+		SearchAlgorithm search = new SearchAlgorithm();
+		List<Node> nodes = search.search(firstSelectedNode, secondSelectedNode);
+		for (int i = 0; i < nodes.size() - 1; i++) {
+			Node child = nodes.get(i);
+			Node parent = nodes.get(i + 1);
 			
-			secondSelectedNode = node;
-			AStarSearch search = new AStarSearch();
-			List<Node> nodes = search.search(firstSelectedNode, secondSelectedNode);
-			for (int i = 0; i < nodes.size() - 1; i++) {
-				Node child = nodes.get(i);
-				Node parent = nodes.get(i + 1);
-				
-				for (Segment s : child.segments) {
-					boolean hasParent = s.start == parent || s.end == parent;
-					if (hasParent) {
-						s.highlighted = true;
-						break;
-					}
+			for (Segment s : child.segments) {
+				boolean hasParent = s.start == parent || s.end == parent;
+				if (hasParent) {
+					String toPrint = "Segment: " + s.road.name + ", " + s.length;
+					s.highlighted = true;
+					break;
 				}
 			}
-		} else {
-			this.firstSelectedNode = node;
 		}
 	}
 
