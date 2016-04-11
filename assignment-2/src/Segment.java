@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -15,6 +16,8 @@ public class Segment {
 	public final Node start, end;
 	public final double length;
 	public final Location[] points;
+	
+	public boolean highlighted;
 
 	public Segment(Graph graph, int roadID, double length, int node1ID,
 			int node2ID, double[] coords) {
@@ -36,11 +39,19 @@ public class Segment {
 	}
 
 	public void draw(Graphics g, Location origin, double scale) {
+		Color c = g.getColor();
+		if (highlighted) {
+			g.setColor(Color.RED);
+		}
+		
+		
 		for (int i = 1; i < points.length; i++) {
 			Point p = points[i - 1].asPoint(origin, scale);
 			Point q = points[i].asPoint(origin, scale);
 			g.drawLine(p.x, p.y, q.x, q.y);
 		}
+		
+		g.setColor(c);
 	}
 }
 

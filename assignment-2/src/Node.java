@@ -1,8 +1,10 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,15 +19,27 @@ public class Node {
 	public final int nodeID;
 	public final Location location;
 	public final Collection<Segment> segments;
-
+	
+	// A* Search
+	public List<Node> neighbours;
+	public Node parent;
+	public double fCost;
+	public Segment connecting;
+	
 	public Node(int nodeID, double lat, double lon) {
 		this.nodeID = nodeID;
 		this.location = Location.newFromLatLon(lat, lon);
 		this.segments = new HashSet<Segment>();
+		this.neighbours = new ArrayList<>();
 	}
 
 	public void addSegment(Segment seg) {
 		segments.add(seg);
+		if (seg.start == this) {
+			neighbours.add(seg.end);
+		} else {
+			neighbours.add(seg.start);			
+		}
 	}
 
 	public void draw(Graphics g, Dimension area, Location origin, double scale) {

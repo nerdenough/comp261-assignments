@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -70,9 +71,27 @@ public class Graph {
 		}
 	}
 
-	public void setHighlight(Node node) {
+	public void setHighlight(Node node) {		
 		if (firstSelectedNode != null) {
+			for (Segment s : segments) {
+				s.highlighted = false;
+			}
+			
 			secondSelectedNode = node;
+			AStarSearch search = new AStarSearch();
+			List<Node> nodes = search.search(firstSelectedNode, secondSelectedNode);
+			for (int i = 0; i < nodes.size() - 1; i++) {
+				Node child = nodes.get(i);
+				Node parent = nodes.get(i + 1);
+				
+				for (Segment s : child.segments) {
+					boolean hasParent = s.start == parent || s.end == parent;
+					if (hasParent) {
+						s.highlighted = true;
+						break;
+					}
+				}
+			}
 		} else {
 			this.firstSelectedNode = node;
 		}
