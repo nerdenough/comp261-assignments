@@ -51,3 +51,6 @@ local.properties
 
 # Reports
 report.txt
+
+# Data
+data

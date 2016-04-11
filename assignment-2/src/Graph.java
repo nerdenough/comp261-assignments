@@ -23,7 +23,7 @@ public class Graph {
 	// just some collection of Segments.
 	Collection<Segment> segments;
 
-	Node highlightedNode;
+	Node firstSelectedNode, secondSelectedNode;
 	Collection<Road> highlightedRoads = new HashSet<>();
 
 	public Graph(File nodes, File roads, File segments, File polygons) {
@@ -59,14 +59,23 @@ public class Graph {
 			n.draw(g2, screen, origin, scale);
 
 		// draw the highlighted node, if it exists.
-		if (highlightedNode != null) {
+		if (firstSelectedNode != null) {
 			g2.setColor(Mapper.HIGHLIGHT_COLOUR);
-			highlightedNode.draw(g2, screen, origin, scale);
+			firstSelectedNode.draw(g2, screen, origin, scale);
+		}
+		
+		if (secondSelectedNode != null) {
+			g2.setColor(Mapper.HIGHLIGHT_COLOUR);
+			secondSelectedNode.draw(g2, screen, origin, scale);
 		}
 	}
 
 	public void setHighlight(Node node) {
-		this.highlightedNode = node;
+		if (firstSelectedNode != null) {
+			secondSelectedNode = node;
+		} else {
+			this.firstSelectedNode = node;
+		}
 	}
 
 	public void setHighlight(Collection<Road> roads) {
