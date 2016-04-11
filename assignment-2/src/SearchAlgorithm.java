@@ -9,39 +9,11 @@ import java.util.Set;
 public class SearchAlgorithm {
 	Comparator<Node> comparator = new NodeComparator();
 	
-	/*public List<Node> search(Node start, Node end) {	
-		start.cost = estimate(start, end);
-		queue.add(start);
-		Node parent = start;
-		
-		while (!queue.isEmpty()) {
-			Node node = queue.poll();
-			if (!node.visited) {
-				node.visited = true;
-				node.pathFrom = parent;
-				
-				if (node == end) {
-					break;
-				}
-				
-				for (Segment edge : node.segments) {
-					Node neighbour = edge.start == node ? edge.end : edge.start;
-					if (!neighbour.visited) {
-						neighbour.cost = node.cost + edge.length;
-						neighbour.totalCost = neighbour.cost + estimate(neighbour, end);
-						queue.add(neighbour);
-					}
-				}
-				
-				parent = node;
-			}
-		}
-		
-		return getPath(start, end);
-	}*/
-	
+	/**
+	 * My implementation of the A* search algorithm.
+	 * Used this video as a reference: https://www.youtube.com/watch?v=-L-WgKMFuhE
+	 */
 	public List<Node> search(Node start, Node end) {
-		// https://www.youtube.com/watch?v=-L-WgKMFuhE
 		Queue<Node> open = new PriorityQueue<>(comparator);
 		Set<Node> closed = new HashSet<>();
 		open.add(start);
