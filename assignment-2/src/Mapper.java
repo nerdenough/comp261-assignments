@@ -72,9 +72,8 @@ public class Mapper extends GUI {
 			if (SwingUtilities.isLeftMouseButton(e)) {
 				graph.setFirstHighlight(closest);
 			} else {
-				graph.setSecondHighlight(closest);
+				getTextOutputArea().setText(graph.setSecondHighlight(closest));
 			}
-			getTextOutputArea().setText(closest.toString());
 		}
 	}
 

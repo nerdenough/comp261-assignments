@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This represents the data structure storing all the roads, nodes, and
@@ -79,7 +80,9 @@ public class Graph {
 		this.firstSelectedNode = node;
 	}
 	
-	public void setSecondHighlight(Node node) {
+	public String setSecondHighlight(Node node) {
+		String log = "";
+		
 		for (Segment s : segments) {
 			s.highlighted = false;
 		}
@@ -87,19 +90,39 @@ public class Graph {
 		this.secondSelectedNode = node;
 		SearchAlgorithm search = new SearchAlgorithm();
 		List<Node> nodes = search.search(firstSelectedNode, secondSelectedNode);
+		Set<Road> roads = new HashSet<>();
+		
 		for (int i = 0; i < nodes.size() - 1; i++) {
 			Node child = nodes.get(i);
 			Node parent = nodes.get(i + 1);
 			
+			
 			for (Segment s : child.segments) {
 				boolean hasParent = s.start == parent || s.end == parent;
 				if (hasParent) {
-					String toPrint = "Segment: " + s.road.name + ", " + s.length;
 					s.highlighted = true;
+					
+					boolean hasRoad = false;
+					for (Road road : roads) {
+						if (road.name.equals(s.road.name)) {
+							hasRoad = true;
+						}
+					}
+					if (!hasRoad) {
+						roads.add(s.road);
+					}
+					
 					break;
 				}
 			}
 		}
+		
+		for (Road road : roads) {
+			log += "ROAD: " + road.name + "\n";
+		}
+		log += "LENGTH: " + secondSelectedNode.totalCost;
+		
+		return log;
 	}
 
 	public void setHighlight(Collection<Road> roads) {
